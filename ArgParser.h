@@ -10,7 +10,6 @@ typedef enum
 {
 	head,
 	tail,
-	range,
 	no_mode
 } arg_mode_t;
 

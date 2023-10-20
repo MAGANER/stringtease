@@ -52,15 +52,6 @@ void args_parse(int argc, char** argv, args_t* arguments)
 			}
 			arguments->mode = tail;
 		}
-		else if(strcmp(curr_arg,"--range") == 0)
-		{
-			if(arguments->mode != no_mode)
-			{
-				printf("cut error: mode is already set up!\n");
-				exit(-1);
-			}
-			arguments->mode = range;
-		}
 		else if (IS_RANGE(curr_arg))
 		{
 			size_t len = strlen(curr_arg);
