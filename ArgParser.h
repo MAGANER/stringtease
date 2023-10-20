@@ -17,7 +17,6 @@ typedef enum
 {
 	str,
 	ch,
-	byte,
 	no_type
 } arg_type_t;
 
@@ -28,7 +27,7 @@ typedef struct
 	long int begin, end;
 } args_t;
 
-#define IS_RANGE(x) check_last_ch(x,'s') || check_last_ch(x,'c') || check_last_ch(x,'b')
+#define IS_RANGE(x) check_last_ch(x,'s') || check_last_ch(x,'c')
 static bool check_last_ch(char* arg, char ch);
 static bool check_first_ch(char* arg, char ch);
 static bool check_is_numeric(char* arg);

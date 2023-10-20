@@ -38,7 +38,7 @@ void args_parse(int argc, char** argv, args_t* arguments)
 		{
 			if(arguments->mode != no_mode)
 			{
-				printf("cut error: mode is already set up!\n");
+				printf("stringtease error: mode is already set up!\n");
 				exit(-1);
 			}
 			arguments->mode = head;
@@ -47,7 +47,7 @@ void args_parse(int argc, char** argv, args_t* arguments)
 		{
 			if(arguments->mode != no_mode)
 			{
-				printf("cut error: mode is already set up!\n");
+				printf("stringtease error: mode is already set up!\n");
 				exit(-1);
 			}
 			arguments->mode = tail;
@@ -56,13 +56,19 @@ void args_parse(int argc, char** argv, args_t* arguments)
 		{
 			size_t len = strlen(curr_arg);
 			char* sub = (char*)malloc(sizeof(char)*len);
+			if(sub == NULL)
+			{
+				printf("stringtease error: failed to init memory while parsing arguments\n");
+				exit(-1);
+			}
+			
 			for(int i = 0;i<len-1;++i)
 				sub[i]= curr_arg[i];
 			sub[len-1] = '\0';
 			
 			if(!check_is_numeric(sub))
 			{
-				printf("cut error:%s is not numeric value!\n",sub);
+				printf("stringtease error:%s is not numeric value!\n",sub);
 				exit(-1);
 			}
 
@@ -72,7 +78,7 @@ void args_parse(int argc, char** argv, args_t* arguments)
 				arguments->end = atoi(sub);
 			else
 			{
-				printf("cut error: range is already set up!\n");
+				printf("stringtease error: range is already set up!\n");
 				exit(-1);
 			}
 			free(sub);
@@ -80,13 +86,11 @@ void args_parse(int argc, char** argv, args_t* arguments)
 			if(curr_arg[len-1] == 's')
 				arguments->type = str;
 			if(curr_arg[len-1] == 'c')
-				arguments->type = ch;
-			if(curr_arg[len-1] == 'b')
-				arguments->type = byte;						
+				arguments->type = ch;						
 		}
 		else
 		{
-			printf("cut error: %s is unknown argument!\n",curr_arg);
+			printf("stringtease error: %s is unknown argument!\n",curr_arg);
 			exit(-1);
 		}		
 	}
@@ -94,7 +98,7 @@ void args_parse(int argc, char** argv, args_t* arguments)
 	if(arguments->begin == -1 &&
 	   arguments->end   == -1)
 	{
-		printf("cut error: no range specified!\n");
+		printf("stringtease error: no range specified!\n");
 		exit(-1);   	
 	}
 	if(arguments->begin != -1 &&
