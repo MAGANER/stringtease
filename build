@@ -1,2 +1,2 @@
 #!/bin/bash
-cc -o stringtease main.c PipeReader.h ArgParser.h ArgParser.c
+cc -o stringtease main.c PipeReader.h ArgParser.h ArgParser.c cutter.h cutter.c

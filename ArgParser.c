@@ -106,4 +106,11 @@ void args_parse(int argc, char** argv, args_t* arguments)
 	{
 		arguments->end = (arguments->begin*2)+1;
 	}
+
+	if(arguments->begin > arguments->end)
+	{
+		printf("stringtease error: begin position is more than end position!\n");
+		exit(-1);
+	}
+	
 }
