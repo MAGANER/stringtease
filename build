@@ -1,0 +1,2 @@
+#!/bin/bash
+cc -o stringtease main.c PipeReader.h ArgParser.h ArgParser.c
