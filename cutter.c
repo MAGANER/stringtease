@@ -76,7 +76,8 @@ char* read_line_by_line_from_head(char* input,args_t* arguments)
 			++n;
 		}
 	}	
-	
+
+	sub[len-2] = '\0';
 	return sub;	
 }
 char* read_line_by_line_from_tail(char* input, args_t* arguments)
@@ -113,6 +114,7 @@ char* read_line_by_line_from_tail(char* input, args_t* arguments)
 		}
 	}
 
+	sub[len-2] = '\0';
 	return sub;
 }
 char* read_from_head(char* input, args_t* arguments)
