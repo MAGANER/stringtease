@@ -2,10 +2,10 @@
 
 void args_init(args_t* arguments)
 {
-	arguments->mode = no_mode;
-	arguments->type = no_type;
-	arguments->begin = -1;
-	arguments->end = -1;
+	arguments->mode    = no_mode;
+	arguments->type    = no_type;
+	arguments->begin   = -1;
+	arguments->end     = -1;
 	arguments->reverse = false;
 }
 bool check_last_ch(char* arg, char ch)
@@ -93,11 +93,27 @@ void args_parse(int argc, char** argv, args_t* arguments)
 				exit(-1);
 			}
 			free(sub);
-
+			
 			if(curr_arg[len-1] == 's')
+			{
+				if(arguments->type != no_type)
+					if(arguments->type - str != 0)
+					{
+						printf("stringtease error: incorrect range points types!\n");
+						exit(-1);
+					}
 				arguments->type = str;
-			if(curr_arg[len-1] == 'c')
-				arguments->type = ch;						
+			}
+			else if(curr_arg[len-1] == 'c')
+			{
+				if(arguments->type != no_type)
+					if(arguments->type - ch != 0)
+					{
+						printf("stringtease error: incorrect range points types!\n");
+						exit(-1);
+					}
+				arguments->type = ch;
+			}					
 		}
 		else
 		{
