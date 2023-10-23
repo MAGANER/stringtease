@@ -27,6 +27,7 @@ typedef struct
 	arg_mode_t mode;
 	arg_type_t type;
 	long int begin, end;
+	bool reverse;
 } args_t;
 
 //inner functions

@@ -6,6 +6,7 @@ void args_init(args_t* arguments)
 	arguments->type = no_type;
 	arguments->begin = -1;
 	arguments->end = -1;
+	arguments->reverse = false;
 }
 bool check_last_ch(char* arg, char ch)
 {
@@ -51,6 +52,16 @@ void args_parse(int argc, char** argv, args_t* arguments)
 				exit(-1);
 			}
 			arguments->mode = tail;
+		}
+		else if(strcmp(curr_arg,"-r") == 0)
+		{
+			if(!arguments->reverse)
+				arguments->reverse = true;
+			else
+			{
+				printf("stringtease error: can't set reverse mode more than one time!");
+				exit(-1);
+			}
 		}
 		else if (IS_RANGE(curr_arg))
 		{

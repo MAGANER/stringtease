@@ -2,6 +2,7 @@
 #include"PipeReader.h"
 #include"cutter.h"
 
+void printf_reversed(char* str);
 int main(int argc, char** argv)
 {
 	//try to read from piped program
@@ -32,14 +33,28 @@ int main(int argc, char** argv)
 	if(args.mode == head)
 	{
 		cutted = read_from_head(input,&args);
-		printf("%s",cutted);
+		if(args.reverse)
+			printf_reversed(cutted);
+		else
+			printf("%s",cutted);
 	}
 	else if(args.mode == tail)
 	{
 		cutted = read_from_tail(input,&args);
-		printf("%s",cutted);
+		if(args.reverse)
+			printf_reversed(cutted);
+		else
+			printf("%s",cutted);
 	}
 	free(cutted);
 	
 	return 0;
+}
+void printf_reversed(char* str)
+{
+	size_t len = strlen(str);
+	for(size_t i = len-1;i!=0;--i)
+	{
+		printf("%c",str[i]);
+	}
 }
