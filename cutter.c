@@ -35,7 +35,9 @@ char* read_char_by_char_from_tail(char* input, args_t* arguments)
 	char* sub = prepare_sub(input, arguments);
 
 	long int n = 0;
-	for(long int i = arguments->end;i>arguments->begin;--i,++n)
+
+	size_t end = strlen(input)-1;
+	for(long int i = end-arguments->begin;i>end-arguments->end;--i,++n)
 		sub[n] = input[i];
 
 	return sub;
