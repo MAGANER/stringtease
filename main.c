@@ -4,6 +4,8 @@
 
 int main(int argc, char** argv)
 {
+	//try to read from piped program
+	//exit if it fails to read or there is no piped program
 	char* input = NULL;
 	if(!isatty(0))
 	{
@@ -24,18 +26,20 @@ int main(int argc, char** argv)
 	args_init(&args);
 	args_parse(argc, argv, &args);
 
+
+	//program can read from head or from tail only
+	char* cutted = NULL;
 	if(args.mode == head)
 	{
-		char* cutted = read_from_head(input,&args);
+		cutted = read_from_head(input,&args);
 		printf("%s",cutted);
-		free(cutted);		
 	}
 	else if(args.mode == tail)
 	{
-		char* cutted = read_from_tail(input,&args);
+		cutted = read_from_tail(input,&args);
 		printf("%s",cutted);
-		free(cutted);		
 	}
+	free(cutted);
 	
 	return 0;
 }
