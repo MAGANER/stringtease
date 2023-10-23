@@ -22,7 +22,7 @@ bool check_first_ch(char* arg,char ch)
 bool check_is_numeric(char* arg)
 {
 	//don't check last symbol
-	for(int i = 0;i<strlen(arg);++i)
+	for(size_t i = 0;i<strlen(arg);++i)
 	{
 		if(!isdigit(arg[i]))
 			return false;
@@ -62,7 +62,7 @@ void args_parse(int argc, char** argv, args_t* arguments)
 				exit(-1);
 			}
 			
-			for(int i = 0;i<len-1;++i)
+			for(size_t i = 0;i<len-1;++i)
 				sub[i]= curr_arg[i];
 			sub[len-1] = '\0';
 			
@@ -104,7 +104,10 @@ void args_parse(int argc, char** argv, args_t* arguments)
 	if(arguments->begin != -1 &&
 	   arguments->end == -1)
 	{
-		arguments->end = (arguments->begin*2)+1;
+		if(arguments->begin != 0)
+			arguments->end = (arguments->begin*2)+1;
+		else
+			arguments->end = 10;
 	}
 
 	if(arguments->begin > arguments->end)
