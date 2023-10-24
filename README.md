@@ -1,6 +1,10 @@
 # stringtease
 Linux cli tool - the combination of head and tail with improvements
 
+# Notes
+Tested on ```Arch linux``` with ```gcc 13.2.1```<br>
+This progam doesn't have any external dependency, using only C standard library.<br>
+
 # How to build
 ```
 git clone https://github.com/MAGANER/stringtease.git
